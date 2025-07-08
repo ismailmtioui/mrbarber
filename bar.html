@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mister Babrer - Premium Hair Salon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Roboto+Condensed:wght@300;400;700&family=Cinzel:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #0a0a0a;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(10, 10, 10, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .navbar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .navbar-logo {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #d4af37;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+        }
+
+        .navbar-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar-link {
+            margin-left: 30px;
+        }
+
+        .navbar-link a {
+            color: #ffffff;
+            text-decoration: none;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .navbar-link a:hover {
+            color: #d4af37;
+        }
+
+        .navbar-link a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: #d4af37;
+            transition: width 0.3s ease;
+        }
+
+        .navbar-link a:hover::after {
+            width: 100%;
+        }
+
+        /* Navbar Book Button */
+        .navbar-book-btn {
+            color: #d4af37;
+            text-decoration: none;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 8px 20px;
+            border: 1px solid #d4af37;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-book-btn:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Header */
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('1.jpeg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 200px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .logo-text {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 500;
+            color: #ffffff;
+            letter-spacing: 0.15em;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .tagline {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.2rem;
+            color: #d4af37;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        /* Book Section */
+        .book-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: #0a0a0a;
+        }
+
+        .book-btn {
+            display: inline-block;
+            background: transparent;
+            color: #d4af37;
+            padding: 15px 50px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #d4af37;
+            border-radius: 0;
+            transition: all 0.4s ease;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+
+        .book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #d4af37;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .book-btn:hover::before {
+            left: 0;
+        }
+
+        .book-btn:hover {
+            color: #0a0a0a;
+            border-color: #d4af37;
+        }
+
+        /* Services List Section */
+        .price-section {
+            padding: 60px 0;
+            position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('8.jpeg') no-repeat center center;
+            background-size: cover;
+        }
+
+        .price-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .price-container {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            font-weight: 500;
+            color: #d4af37;
+            margin-bottom: 40px;
+            letter-spacing: 0.1em;
+            position: relative;
+            text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4af37, transparent);
+        }
+
+        .services-list {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .service-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .service-item:hover {
+            padding-left: 10px;
+        }
+
+        .service-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: #ffffff;
+            flex: 1;
+        }
+
+        .special-service .service-name::after {
+            content: 'Special';
+            display: inline-block;
+            background: #d4af37;
+            color: #0a0a0a;
+            font-size: 0.7rem;
+            padding: 2px 8px;
+            margin-left: 10px;
+            border-radius: 2px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: 700;
+        }
+
+        .service-price {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: #d4af37;
+            font-weight: 600;
+            min-width: 120px;
+            text-align: right;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 80px 0;
+            background-color: #0a0a0a;
+        }
+
+        .gallery-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 0;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 500px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gallery-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(212, 175, 55, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: #d4af37;
+            transform: scale(1.2);
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: #d4af37;
+            border: none;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(0,0,0,0.8);
+            color: #f0d37a;
+        }
+
+        .gallery-arrow.prev {
+            left: 20px;
+        }
+
+        .gallery-arrow.next {
+            right: 20px;
+        }
+
+        /* Location Section */
+        .location-section {
+            padding: 80px 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('99.jpeg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .location-info {
+            padding: 0;
+        }
+
+        .location-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #d4af37;
+            margin-bottom: 30px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .location-detail {
+            margin-bottom: 20px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.95rem;
+            color: #aaaaaa;
+            line-height: 1.6;
+            letter-spacing: 0.05em;
+        }
+
+        .location-detail strong {
+            color: #ffffff;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 0;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .map-iframe {
+            height: 100%;
+            width: 100%;
+            border: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .navbar-container {
+                padding: 0 20px;
+            }
+
+            .navbar-links {
+                display: none;
+            }
+
+            .logo-text {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+
+            .service-name {
+                font-size: 1.1rem;
+            }
+
+            .service-price {
+                font-size: 1.1rem;
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .gallery-slide {
+                height: 350px;
+            }
+
+            .location-title {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .book-btn {
+                padding: 12px 40px;
+                font-size: 0.9rem;
+            }
+
+            .header {
+                margin-top: 50px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f0d37a;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="#" class="navbar-logo">MISTER BABRER</a>
+            <ul class="navbar-links">
+                <li class="navbar-link"><a href="#home">Home</a></li>
+                <li class="navbar-link"><a href="#services">Services</a></li>
+                <li class="navbar-link"><a href="#gallery">Gallery</a></li>
+                <li class="navbar-link"><a href="#location">Location</a></li>
+                <li class="navbar-link"><a href="#book" class="navbar-book-btn">Book Now</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="header" id="home">
+        <div class="container">
+            <div class="logo-container">
+                <img src="isma.PNG" alt="Mister Babrer Logo" class="logo-img">
+                <h1 class="logo-text">MISTER BABRER</h1>
+                <p class="tagline">Premium Hair Styling & Grooming</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Book Section -->
+    <section class="book-section" id="book">
+        <div class="container">
+            <a href="#" class="book-btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- Services List Section -->
+    <section class="price-section" id="services">
+        <div class="container price-container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-list">
+                <!-- Haircut -->
+                <div class="service-item">
+                    <span class="service-name">Haircut</span>
+                    <span class="service-price">40 DH</span>
+                </div>
+                
+                <!-- Beard Trim -->
+                <div class="service-item">
+                    <span class="service-name">Beard Trim</span>
+                    <span class="service-price">20 DH</span>
+                </div>
+                
+                <!-- Special Beard Trim -->
+                <div class="service-item special-service">
+                    <span class="service-name">Special Beard Trim</span>
+                    <span class="service-price">30 DH</span>
+                </div>
+                
+                <!-- Hairdressing -->
+                <div class="service-item">
+                    <span class="service-name">Hairdressing</span>
+                    <span class="service-price">15 DH</span>
+                </div>
+                
+                <!-- Hair Wash -->
+                <div class="service-item">
+                    <span class="service-name">Hair Wash</span>
+                    <span class="service-price">10 DH</span>
+                </div>
+                
+                <!-- Kids Haircut -->
+                <div class="service-item">
+                    <span class="service-name">Kids Haircut</span>
+                    <span class="service-price">30 DH</span>
+                </div>
+                
+                <!-- Keratin Treatment -->
+                <div class="service-item special-service">
+                    <span class="service-name">Keratin Treatment</span>
+                    <span class="service-price">200-300 DH</span>
+                </div>
+                
+                <!-- Protein Treatment -->
+                <div class="service-item">
+                    <span class="service-name">Protein Treatment</span>
+                    <span class="service-price">300-400 DH</span>
+                </div>
+                
+                <!-- Facial Steamer -->
+                <div class="service-item">
+                    <span class="service-name">Facial Steamer</span>
+                    <span class="service-price">50 DH</span>
+                </div>
+                
+                <!-- Face Cleaning -->
+                <div class="service-item">
+                    <span class="service-name">Face Cleaning</span>
+                    <span class="service-price">120 DH</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section" id="gallery">
+        <div class="container">
+            <h2 class="section-title">Our Work</h2>
+            <div class="gallery-container">
+                <div class="gallery-slider" id="gallerySlider">
+                    <div class="gallery-slide" style="background-image: url('1.jpeg')"></div>
+                    <div class="gallery-slide" style="background-image: url('2.jpeg')"></div>
+                    <div class="gallery-slide" style="background-image: url('3.jpeg')"></div>
+                </div>
+                <button class="gallery-arrow prev" onclick="changeSlide(-1)">‹</button>
+                <button class="gallery-arrow next" onclick="changeSlide(1)">›</button>
+                <div class="gallery-nav">
+                    <span class="gallery-dot active" onclick="currentSlide(1)"></span>
+                    <span class="gallery-dot" onclick="currentSlide(2)"></span>
+                    <span class="gallery-dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section class="location-section" id="location">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="location-content">
+                <div class="location-info">
+                    <h3 class="location-title">Salon Location</h3>
+                    <div class="location-detail">
+                        <strong>Address</strong>
+                        123 Luxury Boulevard<br>
+                        Downtown District, City 12345
+                    </div>
+                    <div class="location-detail">
+                        <strong>Phone</strong>
+                        (555) 123-4567
+                    </div>
+                    <div class="location-detail">
+                        <strong>Hours</strong>
+                        Mon-Fri: 9:00 AM - 8:00 PM<br>
+                        Saturday: 8:00 AM - 6:00 PM<br>
+                        Sunday: 10:00 AM - 5:00 PM
+                    </div>
+                    <div class="location-detail">
+                        <strong>Email</strong>
+                        info@misterbabrer.com
+                    </div>
+                </div>
+                <div class="map-container">
+                    <iframe class="map-iframe" 
+                        src="https://maps.google.com/maps?q=35.5713988,-5.3734959&z=17&output=embed"
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.navbar-link a, .navbar-book-btn').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href').startsWith('#')) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 70,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Gallery slider functionality
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.gallery-dot');
+        const slider = document.getElementById('gallerySlider');
+
+        function showSlide(index) {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-slide functionality
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.service-item, .section-title, .location-info, .map-container').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '10px 0';
+                navbar.style.background = 'rgba(10, 10, 10, 0.95)';
+            } else {
+                navbar.style.padding = '15px 0';
+                navbar.style.background = 'rgba(10, 10, 10, 0.9)';
+            }
+        });
+    </script>
+</body>
+</html>

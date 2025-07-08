@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mister Babrer - Premium Hair Salon</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        /* Header */
+        .header {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('1.jpeg') no-repeat center center;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.05) 0%, transparent 70%);
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-img {
+            width: 200px;
+            margin-bottom: 20px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .logo-text {
+            font-size: 3rem;
+            font-weight: 300;
+            color: #ffffff;
+            letter-spacing: 0.1em;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #888888;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        /* Book Section */
+        .book-section {
+            padding: 120px 0;
+            text-align: center;
+            background-color: #0a0a0a;
+        }
+
+        .book-btn {
+            display: inline-block;
+            background: transparent;
+            color: #ffffff;
+            padding: 18px 60px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-decoration: none;
+            border: 1px solid #333333;
+            border-radius: 2px;
+            transition: all 0.4s ease;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .book-btn:hover::before {
+            left: 0;
+        }
+
+        .book-btn:hover {
+            color: #0a0a0a;
+            border-color: #ffffff;
+        }
+
+        /* Price Section */
+        .price-section {
+            padding: 120px 0;
+            background-color: #0a0a0a;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: #ffffff;
+            margin-bottom: 80px;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 1px;
+            background: #333333;
+        }
+
+        .price-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0;
+            border-bottom: 1px solid #1a1a1a;
+            transition: all 0.3s ease;
+        }
+
+        .price-item:hover {
+            padding-left: 20px;
+        }
+
+        .service-info {
+            flex: 1;
+        }
+
+        .service-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .service-description {
+            font-size: 0.9rem;
+            color: #888888;
+            line-height: 1.5;
+        }
+
+        .service-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: 0.05em;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 120px 0;
+            background-color: #0a0a0a;
+        }
+
+        .gallery-container {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .gallery-slider {
+            display: flex;
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .gallery-slide {
+            min-width: 100%;
+            height: 600px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .gallery-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(0,0,0,0.2), rgba(0,0,0,0.1));
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: #ffffff;
+            transform: scale(1.2);
+        }
+
+        .gallery-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.6);
+            color: #ffffff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .gallery-arrow.prev {
+            left: 30px;
+        }
+
+        .gallery-arrow.next {
+            right: 30px;
+        }
+
+        /* Location Section */
+        .location-section {
+            padding: 120px 0;
+            background-color: #0a0a0a;
+        }
+
+        .location-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .location-info {
+            padding: 0;
+        }
+
+        .location-title {
+            font-size: 2rem;
+            font-weight: 500;
+            color: #ffffff;
+            margin-bottom: 40px;
+            letter-spacing: 0.02em;
+        }
+
+        .location-detail {
+            margin-bottom: 30px;
+            font-size: 1rem;
+            color: #888888;
+            line-height: 1.8;
+        }
+
+        .location-detail strong {
+            color: #ffffff;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .map-container {
+            height: 500px;
+            background: #1a1a1a;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666666;
+            font-size: 1rem;
+            border: 1px solid #2a2a2a;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .logo-text {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .location-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .gallery-slide {
+                height: 400px;
+            }
+
+            .price-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .service-price {
+                align-self: flex-end;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333333;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="logo-container">
+                <img src="isma.PNG" alt="Mister Babrer Logo" class="logo-img">
+                <h1 class="logo-text">MISTER BABRER</h1>
+                <p class="tagline">Premium Hair Styling & Grooming</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Book Section -->
+    <section class="book-section">
+        <div class="container">
+            <a href="#" class="book-btn">Book Appointment</a>
+        </div>
+    </section>
+
+    <!-- Price Section -->
+    <section class="price-section">
+        <div class="container">
+            <h2 class="section-title">Services</h2>
+            <div class="price-list">
+                <div class="price-item">
+                    <div class="service-info">
+                        <h3 class="service-name">Classic Haircut</h3>
+                        <p class="service-description">Traditional precision cut with styling and finishing</p>
+                    </div>
+                    <div class="service-price">$45</div>
+                </div>
+                <div class="price-item">
+                    <div class="service-info">
+                        <h3 class="service-name">Beard Trim</h3>
+                        <p class="service-description">Professional beard shaping with hot towel treatment</p>
+                    </div>
+                    <div class="service-price">$25</div>
+                </div>
+                <div class="price-item">
+                    <div class="service-info">
+                        <h3 class="service-name">Premium Package</h3>
+                        <p class="service-description">Complete grooming: cut, wash, style, and beard trim</p>
+                    </div>
+                    <div class="service-price">$85</div>
+                </div>
+                <div class="price-item">
+                    <div class="service-info">
+                        <h3 class="service-name">Hot Shave</h3>
+                        <p class="service-description">Luxury straight razor shave with aftercare</p>
+                    </div>
+                    <div class="service-price">$35</div>
+                </div>
+                <div class="price-item">
+                    <div class="service-info">
+                        <h3 class="service-name">Hair Styling</h3>
+                        <p class="service-description">Professional styling for special occasions</p>
+                    </div>
+                    <div class="service-price">$30</div>
+                </div>
+                <div class="price-item">
+                    <div class="service-info">
+                        <h3 class="service-name">Consultation</h3>
+                        <p class="service-description">Personalized style consultation and recommendations</p>
+                    </div>
+                    <div class="service-price">$15</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Gallery</h2>
+            <div class="gallery-container">
+                <div class="gallery-slider" id="gallerySlider">
+                    <div class="gallery-slide" style="background-image: url('1.jpeg')"></div>
+                    <div class="gallery-slide" style="background-image: url('2.jpeg')"></div>
+                    <div class="gallery-slide" style="background-image: url('3.jpeg')"></div>
+                </div>
+                <button class="gallery-arrow prev" onclick="changeSlide(-1)">‹</button>
+                <button class="gallery-arrow next" onclick="changeSlide(1)">›</button>
+                <div class="gallery-nav">
+                    <span class="gallery-dot active" onclick="currentSlide(1)"></span>
+                    <span class="gallery-dot" onclick="currentSlide(2)"></span>
+                    <span class="gallery-dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location -->
+    <section class="location-section">
+        <div class="container">
+            <h2 class="section-title">Visit Us</h2>
+            <div class="location-content">
+                <div class="location-info">
+                    <h3 class="location-title">Salon Location</h3>
+                    <div class="location-detail">
+                        <strong>Address</strong>
+                        123 Luxury Boulevard<br>
+                        Downtown District, City 12345
+                    </div>
+                    <div class="location-detail">
+                        <strong>Phone</strong>
+                        (555) 123-4567
+                    </div>
+                    <div class="location-detail">
+                        <strong>Hours</strong>
+                        Mon-Fri: 9:00 AM - 8:00 PM<br>
+                        Saturday: 8:00 AM - 6:00 PM<br>
+                        Sunday: 10:00 AM - 5:00 PM
+                    </div>
+                    <div class="location-detail">
+                        <strong>Email</strong>
+                        info@misterbabrer.com
+                    </div>
+                </div>
+                <div class="map-container">
+                    📍 Interactive Map Coming Soon
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.gallery-slide');
+        const dots = document.querySelectorAll('.gallery-dot');
+        const slider = document.getElementById('gallerySlider');
+
+        function showSlide(index) {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+            
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex >= slides.length) {
+                currentSlideIndex = 0;
+            } else if (currentSlideIndex < 0) {
+                currentSlideIndex = slides.length - 1;
+            }
+            
+            showSlide(currentSlideIndex);
+        }
+
+        function currentSlide(index) {
+            currentSlideIndex = index - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        // Auto-slide functionality
+        setInterval(() => {
+            changeSlide(1);
+        }, 5000);
+
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.price-item, .section-title, .location-info, .map-container').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
